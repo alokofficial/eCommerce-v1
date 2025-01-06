@@ -9,6 +9,9 @@ import userRoutes from './routes/userRoutes.js'
 const port = process.env.PORT || 5000;
 connectDB(); // connect to database
 const app = express();
+//Body parser middleware
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({extended:true})); // for parsing application/x-www-form-urlencoded());
 
 app.use('/api/products',productRoutes);
 app.use('/api/users',userRoutes);
