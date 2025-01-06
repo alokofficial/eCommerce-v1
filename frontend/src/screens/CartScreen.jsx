@@ -17,6 +17,13 @@ const CartScreen = () => {
         navigate('/cart');
     };
 
+    const removeFromCartHandler = async(id) => {
+        dispatch(removeFromCart(id));
+    }
+
+    const checkOutHandler = () => {
+        navigate('/login?redirect=/shipping');
+    }
   return (
     <Row>
         <Col md={8}>
@@ -54,7 +61,7 @@ const CartScreen = () => {
                                     <Button
                                         type='button'
                                         variant='light'
-                                        // onClick={() => dispatch(removeFromCart(item))}
+                                        onClick={() => removeFromCartHandler(item._id)}
                                     >
                                         <FaTrash />
                                     </Button>
@@ -75,7 +82,7 @@ const CartScreen = () => {
                         ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
                     </ListGroup.Item>
                     <ListGroup.Item>
-                        <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={() => navigate('/login?redirect=/shipping')}>
+                        <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={checkOutHandler}>
                             Proceed to Checkout
                         </Button>
                     </ListGroup.Item>
