@@ -7,6 +7,7 @@ import './assets/styles/index.css';
 import App from './App.js';
 import HomeScreen from './screens/HomeScreen.jsx'
 import ProductScreen from './screens/ProductScreen.jsx';
+import CartScreen from './screens/CartScreen.jsx';
 // import reportWebVitals from './reportWebVitals.js';
 import { Provider } from 'react-redux';
 import store from './store.js';
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<App />}>
       <Route index={true} path='/' element={<HomeScreen />} />
       <Route path='/product/:id' element={<ProductScreen />} />
+      <Route path='/cart' element={<CartScreen />} />
     </Route>
   )
 );
