@@ -6,7 +6,7 @@ import {Button, Row, Col, ListGroup, Image, Card} from 'react-bootstrap'
 import CheckoutSteps from "../components/CheckoutSteps"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
-import { useCreateOrderMutation } from "../slices/orderApiSlice"
+import { useCreateOrderMutation } from "../slices/ordersApiSlice"
 import { clearCartItems } from "../slices/cartSlice"
 
 
@@ -86,7 +86,7 @@ const PlaceOrderScreen = () => {
                                                 <Image src={item.image} alt={item.name} fluid rounded />
                                             </Col>
                                             <Col>
-                                                <Link to={`/product/${item.product}`}>{item.name}</Link>
+                                                <Link to={`/product/${item._id}`}>{item.name}</Link>
                                             </Col>
                                             <Col md={4}>
                                                 {item.qty} x ${item.price} = ${(item.qty * item.price).toFixed(2)}
