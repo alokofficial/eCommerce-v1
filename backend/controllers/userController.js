@@ -75,7 +75,11 @@ const registerUser = asyncHadler(async(req, res) => {
 // @route   POST /api/users/logout
 // @access  Private
 const logoutUser = asyncHadler(async(req, res) => {
-    res.send('logout user');
+    res.cookie('jwt','',{
+        httpOnly: true,
+        expire: new Date(0)
+    })
+    res.status(200).json({message: 'Logged out successfully'})
 })
 
 // @desc    Get user Profile
