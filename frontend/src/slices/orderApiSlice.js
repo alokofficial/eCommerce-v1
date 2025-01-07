@@ -1,12 +1,12 @@
 import { apiSlice } from "./apiSlice.js";
-import { ORDER_URL } from "../constants.js";
+import { ORDERS_URL } from "../constants.js";
 
 
 export const ordersApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         createOrder: builder.mutation({
             query: (order) => ({
-                url: ORDER_URL,
+                url: ORDERS_URL,
                 method: 'POST',
                 body: {...order}
             }),
@@ -14,7 +14,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         }),
         getOrders: builder.query({
             query: () => ({
-                url: ORDER_URL,
+                url: ORDERS_URL,
                 credentials: 'include'
             }),
             providesTags: ['Order'],
@@ -22,7 +22,7 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         }), 
         getOrderDetails: builder.query({
             query: (id) => ({
-                url: `${ORDER_URL}/${id}`,
+                url: `${ORDERS_URL}/${id}`,
                 credentials: 'include'
             }),
             providesTags: ['Order'],
