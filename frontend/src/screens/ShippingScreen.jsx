@@ -11,7 +11,7 @@ const ShippingScreen = () => {
     const {shippingAddress} = cart
 
     const [address, setAddress] = useState(shippingAddress?.address||'')
-    const [FaCity, setCity]= useState(shippingAddress?.city||'')
+    const [city, setCity]= useState(shippingAddress?.city||'')
     const [postalCode, setPostalCode] = useState(shippingAddress?.postalCode||'')
     const [country, setCountry] = useState(shippingAddress?.country||'')
 
@@ -21,7 +21,7 @@ const ShippingScreen = () => {
    
     const submitHandler = (e) => {
         e.preventDefault()
-       dispatch(saveShippingAddress({address, FaCity, postalCode, country}))
+       dispatch(saveShippingAddress({address, city, postalCode, country}))
        navigate('/payment')
     }
 
@@ -36,7 +36,7 @@ const ShippingScreen = () => {
             </Form.Group>
             <Form.Group className='mb-3' controlId='city'>
                 <Form.Label>City</Form.Label>
-                <Form.Control type='text' placeholder='Enter city' value={FaCity} onChange={(e) => setCity(e.target.value)}></Form.Control>
+                <Form.Control type='text' placeholder='Enter city' value={city} onChange={(e) => setCity(e.target.value)}></Form.Control>
             </Form.Group>
             <Form.Group className='mb-3' controlId='postalCode'>
                 <Form.Label>Postal Code</Form.Label>
