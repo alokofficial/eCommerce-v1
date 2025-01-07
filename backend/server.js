@@ -1,4 +1,5 @@
 import express from 'express'
+import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv'
 dotenv.config()
 import connectDB from './config/db.js';
@@ -12,6 +13,9 @@ const app = express();
 //Body parser middleware
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({extended:true})); // for parsing application/x-www-form-urlencoded());
+
+//cookie parser middleware
+app.use(cookieParser());
 
 app.use('/api/products',productRoutes);
 app.use('/api/users',userRoutes);
