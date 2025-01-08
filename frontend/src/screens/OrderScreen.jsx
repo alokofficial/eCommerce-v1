@@ -6,7 +6,7 @@ import Loader from '../components/Loader'
 import { toast } from 'react-toastify'
 
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
-import { useGetOrderDetailsQuery, usePayOrderMutation, useGetPayPalClientIdQuery} from '../slices/ordersApiSlice'
+import { useGetOrderDetailsQuery, usePayOrderMutation, useGetPayPalClientIdQuery, useDeliverOrderMutation} from '../slices/ordersApiSlice'
 import { useSelector, useDispatch } from 'react-redux'
 
 
@@ -16,13 +16,24 @@ const OrderScreen = () => {
     const {data: order,refetch, isLoading, error} = useGetOrderDetailsQuery(orderId);
 
     const [payOrder,{isLoading:loadingPay}] = usePayOrderMutation()
+
+    const [deliverOrder,{isLoading:loadingDeliver}] = useDeliverOrderMutation()
+    
     const [{isPending},payPalDispatch] = usePayPalScriptReducer();
 
     const {data:paypal,isLoading:loadingPayPal, error: errorPayPal} = useGetPayPalClientIdQuery();
 
     const {userInfo} = useSelector((state) => state.auth);
     const dispatch = useDispatch();
-
+    const deliverHandler = async() => {
+      try {
+        await deliverOrder(orderId);
+        refetch();
+        toast.success('Order Delivered');
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    } 
     useEffect(() => {
       if(!errorPayPal && !loadingPayPal && paypal.clientId){
         const loadPayPalScript = async () => {
@@ -202,7 +213,30 @@ const OrderScreen = () => {
                   )}
                 </ListGroup.Item>
               )}
-              {/* MARK AS DELIVERED PLACEHOLDER */}
+              {loadingDeliver && <Loader />}
+              {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                <ListGroup.Item>
+                  <Button
+                    type="button"
+                    className="btn btn-block"
+                    onClick={deliverHandler}
+                  >
+                    Mark As Delivered
+                  </Button>
+                </ListGroup.Item>
+              )}
+              {/* {loadingCancel && <Loader />} */}
+              {/* {userInfo && userInfo.isAdmin && !order.isCancelled && (
+                <ListGroup.Item>
+                  <Button
+                    type="button"
+                    className="btn btn-block"
+                    onClick={cancelHandler}
+                  >
+                    Cancel Order
+                  </Button>
+                </ListGroup.Item>
+              )} */}
             </ListGroup>
           </Card>
         </Col>
