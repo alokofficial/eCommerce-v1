@@ -18,6 +18,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { addToCart } from "../slices/cartSlice";
 import { toast } from "react-toastify";
+import Meta from "../components/Meta.jsx";
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
@@ -69,6 +70,7 @@ const ProductScreen = () => {
         <Message variant="danger">{error?.data?.message || error?.error}</Message>
       ) : (
         <>
+          <Meta title={product.name} />
             <Row className="my-3">
               <Col md={9}>
                 <h1>{product.name}</h1>
