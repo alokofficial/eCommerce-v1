@@ -1,12 +1,12 @@
 import { Pagination } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
-const Paginate = ({ pages, page, isAdmin = false }) => {
+const Paginate = ({ pages, page, isAdmin = false, keyword = '' }) => {
     const navigate = useNavigate();
 
     const handlePageChange = (x) => {
         const path = !isAdmin
-            ? `/page/${x + 1}`
+            ? keyword ? `/search/${keyword}/page/${x + 1}` : `/page/${x + 1}`
             : `/admin/productlist/${x + 1}`;
         navigate(path);
     };
@@ -29,4 +29,5 @@ const Paginate = ({ pages, page, isAdmin = false }) => {
 }
 
 export default Paginate
+
 
