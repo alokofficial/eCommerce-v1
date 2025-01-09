@@ -27,7 +27,7 @@ const UserListScreen = () => {
       <>
       <h1>Users</h1>
       {loadingDelete && <Loader />}
-      {isLoading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
+      {isLoading ? <Loader /> : error ? <Message variant='danger'>No Users</Message> : (
         <Table striped bordered  hover responsive className='table-sm'>
           <thead>
             <tr>
@@ -45,7 +45,6 @@ const UserListScreen = () => {
                 <td>{user.name}</td>
                 <td><a href={`mailto:${user.email}`}>{user.email}</a></td>
                 <td>{user.isAdmin ? (<FaCheck style={{color: 'green'}}/> ): (<FaTimes style={{color: 'red'}}/>)}</td>
-                <td>
                   <Link to={`/admin/user/${user._id}/edit`}>
                     <Button variant='light' className='btn-sm'>
                       <FaEdit />
@@ -54,7 +53,6 @@ const UserListScreen = () => {
                   <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(user._id)}>
                     <FaTrash style={{color: 'white'}}/>
                   </Button>
-                </td>
               </tr>
             ))}
           </tbody>
@@ -65,3 +63,5 @@ const UserListScreen = () => {
 }
 
 export default UserListScreen
+
+

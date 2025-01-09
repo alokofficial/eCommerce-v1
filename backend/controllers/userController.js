@@ -12,15 +12,13 @@ const authUser = asyncHandler(async(req, res) => {
     const user = await User.findOne({email});
 
     if(user && (await user.matchPassword(password))) {
-        res.cookie('jwt', generateToken(user._id), {
-            httpOnly: true,
-            expire: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
-        })
+      generateToken(res, user._id)
         res.status(200).json({
             _id: user._id,
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
+            
         })
     } else{
         res.status(401);
@@ -47,15 +45,13 @@ const registerUser = asyncHandler(async(req, res) => {
         password
     });
     if (user) {
-        res.cookie('jwt', generateToken(user._id), {
-            httpOnly: true,
-            expire: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
-        })
+        generateToken(res, user._id)
         res.status(201).json({
             _id: user._id,
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
+            
         })
     } else {    
         res.status(400);
@@ -88,6 +84,7 @@ const getUserProfile = asyncHandler(async(req, res) => {
         name: user.name,
         email: user.email,
         isAdmin: user.isAdmin,
+        
     })
 
 })
@@ -190,4 +187,3 @@ export {
     getUserById,
     updateUsers
 }
-
