@@ -5,6 +5,7 @@ import Loader from "../components/Loader.jsx";
 import Message from "../components/Message.jsx";
 import { useParams } from "react-router-dom";
 import Paginate from "../components/Paginate.jsx";
+import { Link } from "react-router-dom";
 
 const HomeScreen = () => {
   const {pageNumber, keyword} = useParams();
@@ -12,6 +13,7 @@ const HomeScreen = () => {
 
   return (
     <>
+      {keyword && <Link to="/" className="btn btn-light mb-4">Go Back</Link>}
       {isLoading ? (
         <Loader />
       ) : error ? (
