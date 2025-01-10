@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { redirect } from 'react-router-dom';
 import { useLogOutMutation } from '../slices/usersApiSlice';
 import { logOut } from '../slices/authSlice';
+import { resetcart } from '../slices/cartSlice';
 import SearchBox from './SearchBox';
 
 const Header = () => {
@@ -22,6 +23,7 @@ const Header = () => {
     try {
       await logOutApiCall().unwrap();
       dispatch(logOut());
+      dispatch(resetcart());
       navigate('/login');
     } catch (err) {
       console.log(err)
