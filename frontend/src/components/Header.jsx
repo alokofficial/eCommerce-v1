@@ -32,12 +32,12 @@ const Header = () => {
 
   return (
     <header>
-        <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
+        <Navbar bg="primary" variant="dark" expand="md" collapseOnSelect>
          <Container> 
-          {/* need to use LinkContainer in order to use react router */}<Nav.Link href="/profile">{userInfo?.name}</Nav.Link>
-            <Navbar.Brand href="/">
-                <img src={logo} alt="ProShop" />
-                    ProShop
+          {/* need to use LinkContainer in order to use react router<Nav.Link href="/profile">{userInfo?.name}</Nav.Link> */}
+            <Navbar.Brand href="/" style={{cursor: "pointer", textAlign:"left"}}>
+                <img src={logo} alt="EpoxySneak"  style={{width: "40px", height: "40px", border: "1px solid #000", borderRadius: "50%", marginRight: "5px"}}/>
+                    EpoxySneak
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
