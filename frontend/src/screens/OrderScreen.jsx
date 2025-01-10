@@ -159,7 +159,7 @@ const OrderScreen = () => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty} x ₹{item.price} = ₹{item.qty * item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -200,9 +200,9 @@ const OrderScreen = () => {
                     <Loader />
                   ) : (
                     <div>
-                      <Button onClick={onApproveTest} style={{marginBottom: '10px'}}>
+                      {/* <Button onClick={onApproveTest} style={{marginBottom: '10px'}}>
                         Test Pay Order 
-                      </Button>
+                      </Button> */}
                       <div>
                         <PayPalButtons
                           createOrder={createOrder}
