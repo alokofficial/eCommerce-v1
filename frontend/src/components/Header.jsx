@@ -4,7 +4,7 @@ import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import logo from '../assets/logo.png';
 // import { LinkContainer } from 'react-router-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { redirect } from 'react-router-dom';
+// import { redirect } from 'react-router-dom';
 import { useLogOutMutation } from '../slices/usersApiSlice';
 import { logOut } from '../slices/authSlice';
 import { resetcart } from '../slices/cartSlice';
